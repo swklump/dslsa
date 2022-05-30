@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>733</width>
-    <height>447</height>
+    <width>1060</width>
+    <height>763</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -249,7 +249,7 @@ QPushButton:pressed {
                </property>
                <property name="icon">
                 <iconset>
-                 <normaloff>../png/img_28891.png</normaloff>../png/img_28891.png</iconset>
+                 <normaloff>../../../Downloads/Minimalistic-Flat-Modern-GUI-Template-master/Minimalistic-Flat-Modern-GUI-Template-master/icons/1x/errorAsset 55.png</normaloff>../../../Downloads/Minimalistic-Flat-Modern-GUI-Template-master/Minimalistic-Flat-Modern-GUI-Template-master/icons/1x/errorAsset 55.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -266,30 +266,60 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="frame_west_bottom">
+           <widget class="QPushButton" name="btn_admin">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>55</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>160</width>
+              <height>55</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Bug</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+QPushButton:hover {
+	background-color: rgb(91,90,90);
+}
+QPushButton:pressed {	
+	background-color: rgba(0,0,0,0);
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../Downloads/Minimalistic-Flat-Modern-GUI-Template-master/Minimalistic-Flat-Modern-GUI-Template-master/icons/1x/settAsset 50.png</normaloff>../../../Downloads/Minimalistic-Flat-Modern-GUI-Template-master/Minimalistic-Flat-Modern-GUI-Template-master/icons/1x/settAsset 50.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_2">
             <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+             <enum>QFrame::StyledPanel</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Plain</enum>
+             <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-            </layout>
            </widget>
           </item>
          </layout>
@@ -352,7 +382,7 @@ QPushButton:pressed {
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true"/>
+                <string notr="true">background:rgb(91,90,90);</string>
                </property>
                <property name="currentIndex">
                 <number>0</number>
@@ -377,8 +407,20 @@ QPushButton:pressed {
                  <property name="bottomMargin">
                   <number>0</number>
                  </property>
-                 <item alignment="Qt::AlignLeft">
+                 <item>
                   <widget class="QFrame" name="frame_home_main_2">
+                   <property name="minimumSize">
+                    <size>
+                     <width>400</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>1500</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::NoFrame</enum>
                    </property>
@@ -427,7 +469,7 @@ QPushButton:pressed {
 }</string>
                       </property>
                       <property name="text">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Report Search Tool&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Soils Report Search Tool&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                       </property>
                       <property name="textFormat">
                        <enum>Qt::RichText</enum>
@@ -435,132 +477,142 @@ QPushButton:pressed {
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_13">
-                      <property name="font">
-                       <font>
-                        <pointsize>10</pointsize>
-                       </font>
+                     <layout class="QHBoxLayout" name="horizontalLayout_2">
+                      <property name="spacing">
+                       <number>6</number>
                       </property>
-                      <property name="text">
-                       <string>Select a Client...</string>
+                      <item>
+                       <widget class="QLineEdit" name="line_searchclient">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color:rgb(255,255,255);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignLeft">
+                       <widget class="QPushButton" name="btn_searchclient">
+                        <property name="text">
+                         <string>Search for client...</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="list_client">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QComboBox" name="combo_client">
+                     <layout class="QHBoxLayout" name="horizontalLayout_3">
                       <item>
-                       <property name="text">
-                        <string>None selected...</string>
-                       </property>
+                       <widget class="QLineEdit" name="line_searchproject">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color:rgb(255,255,255);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
                       </item>
-                      <item>
-                       <property name="text">
-                        <string>Alaska Department of Fish and Game </string>
-                       </property>
+                      <item alignment="Qt::AlignLeft">
+                       <widget class="QPushButton" name="btn_searchproject">
+                        <property name="text">
+                         <string>Search for project...</string>
+                        </property>
+                       </widget>
                       </item>
-                      <item>
-                       <property name="text">
-                        <string>ALASKA RAILROAD CORP</string>
-                       </property>
-                      </item>
-                     </widget>
+                     </layout>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_14">
-                      <property name="font">
-                       <font>
-                        <pointsize>10</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Select a Project Name...</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QComboBox" name="combo_project">
-                      <item>
-                       <property name="text">
-                        <string>None selected...</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>EAST PARK SUBDIVISION</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>PORT INDUSTRIAL AREA</string>
-                       </property>
-                      </item>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_15">
-                      <property name="font">
-                       <font>
-                        <pointsize>10</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Select a Area...</string>
+                     <widget class="QListWidget" name="list_project">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QComboBox" name="combo_area">
+                     <layout class="QHBoxLayout" name="horizontalLayout_4">
                       <item>
-                       <property name="text">
-                        <string>None selected...</string>
-                       </property>
+                       <widget class="QLineEdit" name="line_searcharea">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color:rgb(255,255,255);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
                       </item>
-                      <item>
-                       <property name="text">
-                        <string>1</string>
-                       </property>
+                      <item alignment="Qt::AlignLeft">
+                       <widget class="QPushButton" name="btn_searcharea">
+                        <property name="text">
+                         <string>Search for area...</string>
+                        </property>
+                       </widget>
                       </item>
-                      <item>
-                       <property name="text">
-                        <string>2</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>3</string>
-                       </property>
-                      </item>
-                     </widget>
+                     </layout>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_16">
-                      <property name="font">
-                       <font>
-                        <pointsize>10</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Select a City...</string>
+                     <widget class="QListWidget" name="list_area">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QComboBox" name="combo_city">
+                     <layout class="QHBoxLayout" name="horizontalLayout_5">
                       <item>
-                       <property name="text">
-                        <string>None selected...</string>
-                       </property>
+                       <widget class="QLineEdit" name="line_searchcity">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color:rgb(255,255,255);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
                       </item>
-                      <item>
-                       <property name="text">
-                        <string>Anchorage</string>
-                       </property>
+                      <item alignment="Qt::AlignLeft">
+                       <widget class="QPushButton" name="btn_searchcity">
+                        <property name="text">
+                         <string>Search for city...</string>
+                        </property>
+                       </widget>
                       </item>
-                      <item>
-                       <property name="text">
-                        <string>Adak</string>
-                       </property>
-                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="list_city">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
                      </widget>
                     </item>
                     <item>
@@ -577,17 +629,49 @@ QPushButton:pressed {
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="btn_search">
-                      <property name="text">
-                       <string>Search</string>
-                      </property>
-                     </widget>
+                     <layout class="QHBoxLayout" name="horizontalLayout_6">
+                      <item>
+                       <widget class="QPushButton" name="btn_search">
+                        <property name="styleSheet">
+                         <string notr="true">border-color: rgb(85, 255, 0);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(85, 255, 0);</string>
+                        </property>
+                        <property name="text">
+                         <string>Search PDFs</string>
+                        </property>
+                        <property name="autoDefault">
+                         <bool>true</bool>
+                        </property>
+                        <property name="default">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_reset">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 0, 0);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                        </property>
+                        <property name="text">
+                         <string>Reset Dropdowns</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </item>
                    </layout>
                   </widget>
                  </item>
                  <item>
                   <widget class="QFrame" name="frame_5">
+                   <property name="maximumSize">
+                    <size>
+                     <width>300</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
@@ -748,6 +832,439 @@ p, li { white-space: pre-wrap; }
                  </item>
                 </layout>
                </widget>
+               <widget class="QWidget" name="page_admin">
+                <property name="styleSheet">
+                 <string notr="true">background:rgb(91,90,90);</string>
+                </property>
+                <widget class="QFrame" name="frame_3">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>971</width>
+                   <height>61</height>
+                  </rect>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_7">
+                  <item>
+                   <widget class="QLabel" name="lab_about_home_3">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>55</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>55</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Segoe UI</family>
+                      <pointsize>24</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:rgb(255,255,255);</string>
+                    </property>
+                    <property name="text">
+                     <string>Admin</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QFrame" name="frame_4">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>70</y>
+                   <width>971</width>
+                   <height>641</height>
+                  </rect>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QWidget" name="verticalLayoutWidget_7">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>90</y>
+                    <width>971</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                   <property name="leftMargin">
+                    <number>10</number>
+                   </property>
+                   <item alignment="Qt::AlignLeft">
+                    <widget class="QPushButton" name="btn_adminsubmit">
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                     </property>
+                     <property name="text">
+                      <string>Submit</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="horizontalLayoutWidget_6">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>30</y>
+                    <width>291</width>
+                    <height>29</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <property name="leftMargin">
+                    <number>15</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="lab_home_main_disc_4">
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);</string>
+                     </property>
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Username:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                     <property name="margin">
+                      <number>5</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="line_user">
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="horizontalLayoutWidget_7">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>60</y>
+                    <width>291</width>
+                    <height>29</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_9">
+                   <property name="leftMargin">
+                    <number>15</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="lab_home_main_disc_5">
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);</string>
+                     </property>
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Password:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                     <property name="margin">
+                      <number>5</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="line_pass">
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="horizontalLayoutWidget_8">
+                  <property name="geometry">
+                   <rect>
+                    <x>-1</x>
+                    <y>0</y>
+                    <width>291</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_10">
+                   <property name="leftMargin">
+                    <number>10</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label">
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);</string>
+                     </property>
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Please sign in to continue...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="verticalLayoutWidget_8">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>120</y>
+                    <width>971</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_10">
+                   <property name="leftMargin">
+                    <number>10</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="lab_invalidcreds">
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);
+color: rgb(255, 0, 0);</string>
+                     </property>
+                     <property name="text">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                     <property name="margin">
+                      <number>5</number>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </widget>
+               <widget class="QWidget" name="page_admindb">
+                <widget class="QFrame" name="frame_6">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>971</width>
+                   <height>80</height>
+                  </rect>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QWidget" name="horizontalLayoutWidget_11">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>451</width>
+                    <height>80</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_13">
+                   <property name="leftMargin">
+                    <number>15</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="lab_home_main_hed_3">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>55</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>55</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI Semilight</family>
+                       <pointsize>24</pointsize>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QLabel {
+	color:rgb(255,255,255);
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Admin Dashboard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                     <property name="textFormat">
+                      <enum>Qt::RichText</enum>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="horizontalLayoutWidget_12">
+                  <property name="geometry">
+                   <rect>
+                    <x>450</x>
+                    <y>0</y>
+                    <width>531</width>
+                    <height>80</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_14">
+                   <property name="leftMargin">
+                    <number>15</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="lab_welcome">
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+                <widget class="QFrame" name="frame_7">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>80</y>
+                   <width>451</width>
+                   <height>631</height>
+                  </rect>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QWidget" name="horizontalLayoutWidget_9">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>451</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_11">
+                   <item>
+                    <widget class="QLabel" name="label_2">
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);</string>
+                     </property>
+                     <property name="text">
+                      <string>The following files have entries in the database but no corresponding PDF report:</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="horizontalLayoutWidget_10">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>30</y>
+                    <width>451</width>
+                    <height>151</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_12">
+                   <item>
+                    <widget class="QTextEdit" name="textEdit">
+                     <property name="html">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+                <widget class="QFrame" name="frame_8">
+                 <property name="geometry">
+                  <rect>
+                   <x>480</x>
+                   <y>80</y>
+                   <width>491</width>
+                   <height>631</height>
+                  </rect>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                </widget>
+               </widget>
               </widget>
              </item>
             </layout>
@@ -767,7 +1284,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>733</width>
+     <width>1060</width>
      <height>21</height>
     </rect>
    </property>

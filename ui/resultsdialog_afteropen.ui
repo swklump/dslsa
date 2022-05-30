@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>322</width>
-    <height>181</height>
+    <height>201</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,27 +19,6 @@
      <property name="verticalSpacing">
       <number>10</number>
      </property>
-     <item row="3" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QPushButton" name="btn_yes">
-         <property name="text">
-          <string>Yes</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_no">
-         <property name="text">
-          <string>No - Return to Search</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="1" column="0">
-      <widget class="QTextEdit" name="text_reportfound"/>
-     </item>
      <item row="0" column="0" alignment="Qt::AlignTop">
       <widget class="QLabel" name="label">
        <property name="styleSheet">
@@ -47,19 +26,29 @@
 font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
        </property>
        <property name="text">
-        <string>Search Successful!</string>
+        <string/>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Would you like to open all the results?</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QPushButton" name="btn_mainmenu">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Return to Search</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
+      <widget class="QTextEdit" name="text_reportfound"/>
      </item>
     </layout>
    </item>
