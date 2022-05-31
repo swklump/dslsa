@@ -499,6 +499,9 @@ QPushButton:pressed {
                       </item>
                       <item alignment="Qt::AlignLeft">
                        <widget class="QPushButton" name="btn_searchclient">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
                         <property name="text">
                          <string>Search for client...</string>
                         </property>
@@ -533,6 +536,9 @@ QPushButton:pressed {
                       </item>
                       <item alignment="Qt::AlignLeft">
                        <widget class="QPushButton" name="btn_searchproject">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
                         <property name="text">
                          <string>Search for project...</string>
                         </property>
@@ -567,6 +573,9 @@ QPushButton:pressed {
                       </item>
                       <item alignment="Qt::AlignLeft">
                        <widget class="QPushButton" name="btn_searcharea">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
                         <property name="text">
                          <string>Search for area...</string>
                         </property>
@@ -601,6 +610,9 @@ QPushButton:pressed {
                       </item>
                       <item alignment="Qt::AlignLeft">
                        <widget class="QPushButton" name="btn_searchcity">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
                         <property name="text">
                          <string>Search for city...</string>
                         </property>
@@ -1166,7 +1178,7 @@ p, li { white-space: pre-wrap; }
                    <rect>
                     <x>450</x>
                     <y>0</y>
-                    <width>531</width>
+                    <width>614</width>
                     <height>80</height>
                    </rect>
                   </property>
@@ -1218,7 +1230,10 @@ p, li { white-space: pre-wrap; }
                       <string notr="true">color:rgb(255,255,255);</string>
                      </property>
                      <property name="text">
-                      <string>The following files have entries in the database but no corresponding PDF report:</string>
+                      <string>Enter the path and name of the Excel file.</string>
+                     </property>
+                     <property name="indent">
+                      <number>10</number>
                      </property>
                     </widget>
                    </item>
@@ -1230,18 +1245,97 @@ p, li { white-space: pre-wrap; }
                     <x>0</x>
                     <y>30</y>
                     <width>451</width>
-                    <height>151</height>
+                    <height>31</height>
                    </rect>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_12">
+                   <property name="leftMargin">
+                    <number>10</number>
+                   </property>
                    <item>
-                    <widget class="QTextEdit" name="textEdit">
-                     <property name="html">
-                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <widget class="QLabel" name="label_5">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>Path of Excel file:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="line_excelpath">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="horizontalLayoutWidget_20">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>60</y>
+                    <width>451</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_35">
+                   <property name="leftMargin">
+                    <number>10</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_6">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>Name of Excel file:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="line_excelname">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="horizontalLayoutWidget_21">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>90</y>
+                    <width>451</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_36">
+                   <property name="leftMargin">
+                    <number>10</number>
+                   </property>
+                   <item>
+                    <widget class="QPushButton" name="btn_submitexcelpath">
+                     <property name="maximumSize">
+                      <size>
+                       <width>100</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>Update</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_excelmessage">
+                     <property name="text">
+                      <string/>
                      </property>
                     </widget>
                    </item>
@@ -1263,6 +1357,50 @@ p, li { white-space: pre-wrap; }
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
+                 <widget class="QWidget" name="horizontalLayoutWidget_13">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>451</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_18">
+                   <item>
+                    <widget class="QLabel" name="label_3">
+                     <property name="styleSheet">
+                      <string notr="true">color:rgb(255,255,255);</string>
+                     </property>
+                     <property name="text">
+                      <string>There are no PDF reports for the following in the Excel file:</string>
+                     </property>
+                     <property name="indent">
+                      <number>10</number>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QWidget" name="horizontalLayoutWidget_14">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>30</y>
+                    <width>451</width>
+                    <height>351</height>
+                   </rect>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_19">
+                   <item>
+                    <widget class="QTextEdit" name="text_reportsnotinfolder">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
                 </widget>
                </widget>
               </widget>

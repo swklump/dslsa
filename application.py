@@ -1,6 +1,6 @@
 from PyQt5 import uic
-from PyQt5.QtWidgets import QDialog, QProgressBar, QFileDialog, QMainWindow, QApplication, QListWidgetItem
-from PyQt5.QtCore import QUrl, pyqtSignal, Qt
+from PyQt5.QtWidgets import QDialog, QFileDialog, QMainWindow, QApplication, QListWidgetItem
+# from PyQt5.QtCore import QUrl, pyqtSignal, Qt
 
 import os, sys, shutil
 import pandas as pd
@@ -15,10 +15,13 @@ icon_path = 'png/icon.ico'
 # GLOBAL VARS
 reports, resultsDialogSuccess = '', ''
 client, project, area, city = 'None selected...','None selected...','None selected...','None selected...'
+searchclientvar, searchprojectvar,searchareavar, searchcityvar = '','','',''
 df = pd.read_excel('SoilsReportRecord.xls')
-for x in df.columns.tolist():
+for x in ['Client','Project Name','Area','CITY']:
     df[x] = df[x].str.title()
-authorizedcredentials = {'sklump':'dowluser'}
+authorizedcredentials = {'':''}
+adminvalidated = False
+
 class Master():
 
     def backto_mainmenu(self):
@@ -34,7 +37,8 @@ class ResultsDialogSuccess(QDialog, Master):
     def __init__(self):
         super(ResultsDialogSuccess, self).__init__()
         self.ui = uic.loadUi('ui/resultsdialog_success.ui', self)
-        self.setFixedSize(self.size())
+        window_defaults(self, appname, icon_path)
+
         self.btn_mainmenu.clicked.connect(self.backto_mainmenu)
         self.btn_submit.setDefault(True)
 
@@ -42,14 +46,16 @@ class ResultsDialogFailure(QDialog, Master):
     def __init__(self):
         super(ResultsDialogFailure, self).__init__()
         self.ui = uic.loadUi('ui/resultsdialog_failure.ui', self)
-        self.setFixedSize(self.size())
+        window_defaults(self, appname, icon_path)
+
         self.btn_mainmenu.clicked.connect(self.backto_mainmenu)
 
 class ResultsDialogAfterOpen(QDialog, Master):
     def __init__(self):
         super(ResultsDialogAfterOpen, self).__init__()
         self.ui = uic.loadUi('ui/resultsdialog_afteropen.ui', self)
-        self.setFixedSize(self.size())
+        window_defaults(self, appname, icon_path)
+
         self.btn_mainmenu.clicked.connect(self.backto_mainmenu)
 
 
@@ -62,10 +68,9 @@ class ControlMainWindow(QMainWindow, Master):
         self.ui = Ui_appmainwindow()
         self.ui.setupUi(self)
 
-        self.setFixedSize(self.size())
-        self.setWindowTitle(appname)
+        window_defaults(self, appname, icon_path)
 
-        global client, project, area, city
+        global client, project, area, city, adminvalidated
         dict_dropdown = {self.ui.list_client:[client,'Client'], self.ui.list_project:[project,'Project Name'], self.ui.list_area:[area,'Area'], self.ui.list_city:[city,'CITY']}
 
         # add options to combo box from excel file
@@ -75,6 +80,11 @@ class ControlMainWindow(QMainWindow, Master):
             for x in combolist:
                 k.addItem(x)
 
+        self.ui.line_searchclient.setText(searchclientvar)
+        self.ui.line_searchproject.setText(searchprojectvar)
+        self.ui.line_searcharea.setText(searchareavar)
+        self.ui.line_searchcity.setText(searchcityvar)
+
         self.ui.list_client.setCurrentItem(QListWidgetItem('Adot&Pf'))
         # Set previous selections
         # for k, v in dict_dropdown.items():
@@ -82,7 +92,7 @@ class ControlMainWindow(QMainWindow, Master):
 
         self.ui.btn_home.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(0))
         self.ui.btn_about.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(1))
-        self.ui.btn_admin.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(2))
+        self.ui.btn_admin.clicked.connect(lambda adminvalidated: self.ui.stackedWidget_2.setCurrentIndex(2) if adminvalidated == False else self.ui.stackedWidget_2.setCurrentIndex(3))
 
         self.ui.btn_search.setDefault(True)
         self.ui.btn_search.clicked.connect(self.get_results)
@@ -93,24 +103,58 @@ class ControlMainWindow(QMainWindow, Master):
         self.ui.btn_searcharea.clicked.connect(self.filter_area_list)
         self.ui.btn_searchcity.clicked.connect(self.filter_city_list)
         self.ui.btn_adminsubmit.clicked.connect(self.submitcredentials)
+        self.ui.btn_submitexcelpath.clicked.connect(self.changeexcelpath)
+
+    def changeexcelpath(self):
+
+        excelpath = self.ui.line_excelpath.text()
+        excelname = self.ui.line_excelname.text()
+        if excelname[-4:] == '.xls':
+            pass
+        else:
+            excelname = excelname + '.xls'
+        try:
+            df_test = pd.read_excel(excelpath + '/' + excelname)
+        except FileNotFoundError:
+            self.ui.label_excelmessage.setText('Path and file name not found! Please try again.')
+            self.ui.label_excelmessage.setStyleSheet('color: red;')
+        else:
+            self.ui.label_excelmessage.setText('Path and file name have been updated!')
+            self.ui.label_excelmessage.setStyleSheet('color: green;')
 
     def submitcredentials(self):
+        global adminvalidated
+
         user = self.ui.line_user.text()
         password = self.ui.line_pass.text()
         if user in authorizedcredentials:
             if password == authorizedcredentials[user]:
+                adminvalidated = True
                 self.ui.lab_invalidcreds.setText('')
                 self.ui.stackedWidget_2.setCurrentIndex(3)
                 self.ui.lab_welcome.setText(f'Welcome {user}! This is the admin dashboard.')
+                
+                
+                # get files in source folder
+                pdffiles = os.listdir(folder)
+                reports_notinforlder = [str(x) for x in df['Report#'].values.tolist() if str(x).lstrip('0')+'.pdf' not in pdffiles]
+                message = ''
+                for x in reports_notinforlder:
+                    message = message + x + '\n'
+                self.ui.text_reportsnotinfolder.setText(message)
+                self.ui.text_reportsnotinfolder.setReadOnly(True)
+
             else:
                 self.ui.lab_invalidcreds.setText('The password is not correct. Please try again.')
         else:
             self.ui.lab_invalidcreds.setText('The username is not correct. Please try again.')
 
 
-
+# FILTER FUNCTIONS--------------------------------------------
     def filter_client_list(self):
+        global searchclientvar
         searchinput = self.ui.line_searchclient.text()
+        searchclientvar = searchinput
         
         # if search is blank, load all options
         if searchinput == '':
@@ -131,7 +175,10 @@ class ControlMainWindow(QMainWindow, Master):
                 self.ui.list_client.addItem(x)
         
     def filter_project_list(self):
+        global searchprojectvar
         searchinput = self.ui.line_searchproject.text()
+        searchprojectvar = searchinput
+
         
         # if search is blank, load all options
         if searchinput == '':
@@ -152,7 +199,10 @@ class ControlMainWindow(QMainWindow, Master):
                 self.ui.list_project.addItem(x)
         
     def filter_area_list(self):
+        global searchareavar
         searchinput = self.ui.line_searcharea.text()
+        searchareavar = searchinput
+
         
         # if search is blank, load all options
         if searchinput == '':
@@ -173,7 +223,10 @@ class ControlMainWindow(QMainWindow, Master):
                 self.ui.list_area.addItem(x)
         
     def filter_city_list(self):
+        global searchcityvar
         searchinput = self.ui.line_searchcity.text()
+        searchcityvar = searchinput
+
         
         # if search is blank, load all options
         if searchinput == '':
@@ -194,11 +247,33 @@ class ControlMainWindow(QMainWindow, Master):
                 self.ui.list_city.addItem(x)
 
     def reset(self):
-        list_dropdown = [self.ui.combo_client, self.ui.combo_project, self.ui.combo_area, self.ui.combo_city]
-        for x in list_dropdown:
-            x.setCurrentText('None selected...')
+        self.ui.line_searchclient.setText('')
+        self.ui.line_searchproject.setText('')
+        self.ui.line_searcharea.setText('')
+        self.ui.line_searchcity.setText('')
+
+        combolist = list(df['Client'].unique())
+        combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
+        self.ui.list_client.clear()
+        self.ui.list_client.addItems(combolist)
+
+        combolist = list(df['Project Name'].unique())
+        combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
+        self.ui.list_project.clear()
+        self.ui.list_project.addItems(combolist)
+
+        combolist = list(df['Area'].unique())
+        combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
+        self.ui.list_area.clear()
+        self.ui.list_area.addItems(combolist)
+
+        combolist = list(df['CITY'].unique())
+        combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
+        self.ui.list_city.clear()
+        self.ui.list_city.addItems(combolist)
 
 
+# RESULTS DIALOG FUNCTIONS-------------------------------------------
     def get_results(self):
         global reports, client, project, area, city
 
@@ -240,8 +315,7 @@ class ControlMainWindow(QMainWindow, Master):
         resultsDialogSuccess.label.setStyleSheet('color: green;')
         resultsDialogSuccess.btn_submit.setDefault(True)
         resultsDialogSuccess.btn_submit.clicked.connect(self.viewresults)
-
-    
+  
     def viewresults(self):
         global reports, resultsDialogSuccess
         resultsDialogAfterOpen = ResultsDialogAfterOpen()
@@ -300,6 +374,7 @@ class ControlMainWindow(QMainWindow, Master):
         resultsDialogAfterOpen.text_reportfound.setText(message)
         resultsDialogAfterOpen.text_reportfound.setStyleSheet("color: "+color+';')
         
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
