@@ -1,8 +1,9 @@
 from PyQt5 import uic
-from PyQt5.QtWidgets import QDialog, QFileDialog, QMainWindow, QApplication, QListWidgetItem
+from PyQt5.QtWidgets import QDialog, QFileDialog, QVBoxLayout, QMainWindow, QApplication, QListWidgetItem
 # from PyQt5.QtCore import QUrl, pyqtSignal, Qt
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 
-import os, sys, shutil
+import os, sys, shutil, folium, io, markupsafe
 import pandas as pd
 from config import folder
 from functions.windowdefaults import window_defaults
@@ -19,7 +20,7 @@ searchclientvar, searchprojectvar,searchareavar, searchcityvar = '','','',''
 df = pd.read_excel('SoilsReportRecord.xls')
 for x in ['Client','Project Name','Area','CITY']:
     df[x] = df[x].str.title()
-authorizedcredentials = {'':''}
+authorizedcredentials = {'sklump':'dowluser'}
 adminvalidated = False
 
 class Master():
@@ -84,6 +85,22 @@ class ControlMainWindow(QMainWindow, Master):
         self.ui.line_searchproject.setText(searchprojectvar)
         self.ui.line_searcharea.setText(searchareavar)
         self.ui.line_searchcity.setText(searchcityvar)
+        
+        # add map
+        coordinate = (37.8199286, -122.4782551)
+        m = folium.Map(
+        	tiles='Stamen Terrain',
+        	zoom_start=13,
+        	location=coordinate
+        )
+
+        # save map data to data object
+        data = io.BytesIO()
+        m.save(data, close_file=False)
+
+        webView = QWebEngineView()
+        webView.setHtml(data.getvalue().decode())
+        self.ui.verticalLayout_2.addWidget(webView)
 
         self.ui.list_client.setCurrentItem(QListWidgetItem('Adot&Pf'))
         # Set previous selections

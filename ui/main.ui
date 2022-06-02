@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1060</width>
-    <height>763</height>
+    <width>934</width>
+    <height>863</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -707,7 +707,7 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QTextEdit" name="text_msgbox"/>
+                     <layout class="QVBoxLayout" name="verticalLayout_2"/>
                     </item>
                     <item>
                      <widget class="QLabel" name="label_12">
@@ -723,9 +723,6 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
                        <string>Available Files</string>
                       </property>
                      </widget>
-                    </item>
-                    <item>
-                     <widget class="QTextEdit" name="text_files"/>
                     </item>
                    </layout>
                   </widget>
@@ -1393,11 +1390,7 @@ p, li { white-space: pre-wrap; }
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_19">
                    <item>
-                    <widget class="QTextEdit" name="text_reportsnotinfolder">
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(255, 255, 255);</string>
-                     </property>
-                    </widget>
+                    <widget class="QTextEdit" name="text_reportsnotinfolder"/>
                    </item>
                   </layout>
                  </widget>
@@ -1422,7 +1415,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1060</width>
+     <width>934</width>
      <height>21</height>
     </rect>
    </property>
