@@ -3,34 +3,39 @@ from PyQt5.QtWidgets import QDialog, QFileDialog, QVBoxLayout, QMainWindow, QApp
 # from PyQt5.QtCore import QUrl, pyqtSignal, Qt
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 
-import os, sys, shutil, folium, io, markupsafe
+import os, sys, shutil, folium, io, markupsafe, requests
 import pandas as pd
 from config import folder
 from functions.windowdefaults import window_defaults
+from zipfile import ZipFile
+from getplacemarkers import get_placemarkers
+from folium.plugins.marker_cluster import MarkerCluster
+from folium.plugins.fast_marker_cluster import FastMarkerCluster
+
 
 from ui_main import Ui_appmainwindow
+
 
 appname = 'DOWL Soils Library Search App'
 icon_path = 'png/icon.ico'
 
 # GLOBAL VARS
 reports, resultsDialogSuccess = '', ''
-client, project, area, city = 'None selected...','None selected...','None selected...','None selected...'
-searchclientvar, searchprojectvar,searchareavar, searchcityvar = '','','',''
-df = pd.read_excel('SoilsReportRecord.xls')
-for x in ['Client','Project Name','Area','CITY']:
-    df[x] = df[x].str.title()
+projnumber, project, county, area, city = 'None selected...','None selected...','None selected...','None selected...','None selected...'
+searchprojnumbervar, searchprojectvar,searchcountyvar, searchcityvar = '','','',''
+df_placemarks = pd.DataFrame({'id':['test'],'lat':[61.165622],'lon':[-149.930321]})
 authorizedcredentials = {'sklump':'dowluser'}
+# df_counties = pd.read_csv('https://www2.census.gov/geo/docs/reference/codes/files/national_county.txt')
 adminvalidated = False
+
+dict_loc = {'Alaska':[64.200841,-149.493673]}
+selectedstate = 'Alaska'
 
 class Master():
 
     def backto_mainmenu(self):
         self.close()
         ControlMainWindow().show()
-    # Function for the hyperlink
-    # def link(self, linkStr):
-    #     QDesktopServices.openUrl(QUrl(linkStr))
 
 
 # DIALOG BOXES ------------------------------------------------------------------------------------------
@@ -71,38 +76,41 @@ class ControlMainWindow(QMainWindow, Master):
 
         window_defaults(self, appname, icon_path)
 
-        global client, project, area, city, adminvalidated
-        dict_dropdown = {self.ui.list_client:[client,'Client'], self.ui.list_project:[project,'Project Name'], self.ui.list_area:[area,'Area'], self.ui.list_city:[city,'CITY']}
+        self.df = pd.read_excel('SoilsReportRecord.xls')
+        for x in ['Project Name','Area','CITY']:
+            self.df[x] = self.df[x].str.title()
+
+        global projnumber, project, county, city, adminvalidated, selectedstate, dict_placemarkers
+        dict_dropdown = {self.ui.list_projnumber:[projnumber,'W.O. #'], self.ui.list_project:[project,'Project Name'], self.ui.list_city:[city,'CITY']}
 
         # add options to combo box from excel file
         for k,v in dict_dropdown.items():
-            combolist = list(df[v[1]].unique())
-            combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
+            combolist = list(self.df[v[1]].unique())
+            combolist = sorted([str(item) for item in combolist if not(pd.isnull(str(item))) == True])
             for x in combolist:
                 k.addItem(x)
 
-        self.ui.line_searchclient.setText(searchclientvar)
+        self.ui.line_searchprojnumber.setText(searchprojnumbervar)
         self.ui.line_searchproject.setText(searchprojectvar)
-        self.ui.line_searcharea.setText(searchareavar)
+        # self.ui.line_searcharea.setText(searchareavar)
         self.ui.line_searchcity.setText(searchcityvar)
         
         # add map
-        coordinate = (37.8199286, -122.4782551)
-        m = folium.Map(
-        	tiles='Stamen Terrain',
-        	zoom_start=13,
-        	location=coordinate
+        self.m = folium.Map(
+        	tiles='openstreetmap',
+        	zoom_start=4,
+        	location=(dict_loc[selectedstate][0], dict_loc[selectedstate][1])
         )
-
-        # save map data to data object
+        for i in range(len(df_placemarks)):
+            folium.Marker(location=[df_placemarks['lat'].iloc[i],df_placemarks['lon'].iloc[i]],popup=df_placemarks['id'].iloc[i]).add_to(self.m)
         data = io.BytesIO()
-        m.save(data, close_file=False)
+        self.m.save(data, close_file=False)
 
         webView = QWebEngineView()
         webView.setHtml(data.getvalue().decode())
-        self.ui.verticalLayout_2.addWidget(webView)
+        self.ui.verticalLayout.addWidget(webView)
 
-        self.ui.list_client.setCurrentItem(QListWidgetItem('Adot&Pf'))
+        # self.ui.list_client.setCurrentItem(QListWidgetItem('Adot&Pf'))
         # Set previous selections
         # for k, v in dict_dropdown.items():
         #     k.setCurrentText(v[0])
@@ -115,12 +123,61 @@ class ControlMainWindow(QMainWindow, Master):
         self.ui.btn_search.clicked.connect(self.get_results)
         self.ui.btn_reset.clicked.connect(self.reset)
 
-        self.ui.btn_searchclient.clicked.connect(self.filter_client_list)
+        self.ui.btn_searchprojnumber.clicked.connect(self.filter_projnumber_list)
         self.ui.btn_searchproject.clicked.connect(self.filter_project_list)
-        self.ui.btn_searcharea.clicked.connect(self.filter_area_list)
+        # self.ui.btn_searcharea.clicked.connect(self.filter_area_list)
         self.ui.btn_searchcity.clicked.connect(self.filter_city_list)
         self.ui.btn_adminsubmit.clicked.connect(self.submitcredentials)
         self.ui.btn_submitexcelpath.clicked.connect(self.changeexcelpath)
+
+        self.ui.list_city.itemClicked.connect(self.showmarkers)
+    
+    def showmarkers(self):
+        global df_placemarks
+        selectedcity = self.ui.list_city.selectedItems()[0].text()
+        df_placemarks = get_placemarkers(selectedcity)
+
+        # reinitialize map
+        self.m = folium.Map(
+        	tiles='openstreetmap',
+        )
+        sw = df_placemarks[['lat', 'lon']].min().values.tolist()
+        ne = df_placemarks[['lat', 'lon']].max().values.tolist()  
+        self.m.fit_bounds([sw, ne]) 
+
+        # add points to cluster
+        # might have to make the popup div simpler to render Anchorage
+        callback = """\
+        function (row) {
+            var marker;
+            marker = L.marker(new L.LatLng(row[0], row[1]), {color:'blue'});
+            
+            var popup = L.popup();
+            const display_text = {text1: row[3], text2: row[4]};
+            var mytext = $(`
+
+                <div>
+                Project Name: ${display_text.text1} </br>
+                File: ${display_text.text2}
+                </div>
+
+            `)[0];
+            popup.setContent(mytext);
+            marker.bindPopup(popup);
+            
+            return marker;
+        };"""
+        FastMarkerCluster(df_placemarks[['lat', 'lon','id','projectname','file']].values.tolist(), callback=callback).add_to(self.m)
+
+        # save changes to map
+        data = io.BytesIO()
+        self.m.save(data, close_file=False)
+        webView = QWebEngineView()
+        webView.setHtml(data.getvalue().decode())
+        for i in reversed(range(self.ui.verticalLayout.count())): 
+            self.ui.verticalLayout.itemAt(i).widget().setParent(None)
+        self.ui.verticalLayout.addWidget(webView)
+
 
     def changeexcelpath(self):
 
@@ -168,28 +225,28 @@ class ControlMainWindow(QMainWindow, Master):
 
 
 # FILTER FUNCTIONS--------------------------------------------
-    def filter_client_list(self):
-        global searchclientvar
-        searchinput = self.ui.line_searchclient.text()
-        searchclientvar = searchinput
+    def filter_projnumber_list(self):
+        global searchprojnumbervar
+        searchinput = self.ui.line_searchprojnumber.text()
+        searchprojnumbervar = searchinput
         
         # if search is blank, load all options
         if searchinput == '':
-            combolist = list(df['Client'].unique())
-            combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
-            self.ui.list_client.clear()
-            self.ui.list_client.addItems(combolist)
+            combolist = list(df['W.O. #'].unique())
+            combolist = sorted([str(item) for item in combolist if not(pd.isnull(str(item))) == True])
+            self.ui.list_projnumber.clear()
+            self.ui.list_projnumber.addItems(combolist)
         
         # else get list of items with search input contained
         else:
             matching_results = []
-            for x in df['Client'].values.tolist():
+            for x in df['W.O. #'].values.tolist():
                 if str(searchinput).lower() in str(x).lower():
                     matching_results.append(x)
             matching_results = sorted(set(matching_results))
-            self.ui.list_client.clear()
+            self.ui.list_projnumber.clear()
             for x in matching_results:
-                self.ui.list_client.addItem(x)
+                self.ui.list_projnumber.addItem(x)
         
     def filter_project_list(self):
         global searchprojectvar
@@ -200,7 +257,7 @@ class ControlMainWindow(QMainWindow, Master):
         # if search is blank, load all options
         if searchinput == '':
             combolist = list(df['Project Name'].unique())
-            combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
+            combolist = sorted([str(item) for item in combolist if not(pd.isnull(str(item))) == True])
             self.ui.list_project.clear()
             self.ui.list_project.addItems(combolist)
         
@@ -215,29 +272,29 @@ class ControlMainWindow(QMainWindow, Master):
             for x in matching_results:
                 self.ui.list_project.addItem(x)
         
-    def filter_area_list(self):
-        global searchareavar
-        searchinput = self.ui.line_searcharea.text()
-        searchareavar = searchinput
+    # def filter_area_list(self):
+    #     global searchareavar
+    #     searchinput = self.ui.line_searcharea.text()
+    #     searchareavar = searchinput
 
         
-        # if search is blank, load all options
-        if searchinput == '':
-            combolist = list(df['Area'].unique())
-            combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
-            self.ui.list_area.clear()
-            self.ui.list_area.addItems(combolist)
+    #     # if search is blank, load all options
+    #     if searchinput == '':
+    #         combolist = list(df['Area'].unique())
+    #         combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
+    #         self.ui.list_area.clear()
+    #         self.ui.list_area.addItems(combolist)
         
-        # else get list of items with search input contained
-        else:
-            matching_results = []
-            for x in df['Area'].values.tolist():
-                if str(searchinput).lower() in str(x).lower():
-                    matching_results.append(x)
-            matching_results = sorted(set(matching_results))
-            self.ui.list_area.clear()
-            for x in matching_results:
-                self.ui.list_area.addItem(x)
+    #     # else get list of items with search input contained
+    #     else:
+    #         matching_results = []
+    #         for x in df['Area'].values.tolist():
+    #             if str(searchinput).lower() in str(x).lower():
+    #                 matching_results.append(x)
+    #         matching_results = sorted(set(matching_results))
+    #         self.ui.list_area.clear()
+    #         for x in matching_results:
+    #             self.ui.list_area.addItem(x)
         
     def filter_city_list(self):
         global searchcityvar
@@ -247,15 +304,15 @@ class ControlMainWindow(QMainWindow, Master):
         
         # if search is blank, load all options
         if searchinput == '':
-            combolist = list(df['CITY'].unique())
-            combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
+            combolist = list(self.df['CITY'].unique())
+            combolist = sorted([str(item) for item in combolist if not(pd.isnull(str(item))) == True])
             self.ui.list_city.clear()
             self.ui.list_city.addItems(combolist)
         
         # else get list of items with search input contained
         else:
             matching_results = []
-            for x in df['CITY'].values.tolist():
+            for x in self.df['CITY'].values.tolist():
                 if str(searchinput).lower() in str(x).lower():
                     matching_results.append(x)
             matching_results = sorted(set(matching_results))
@@ -269,7 +326,7 @@ class ControlMainWindow(QMainWindow, Master):
         self.ui.line_searcharea.setText('')
         self.ui.line_searchcity.setText('')
 
-        combolist = list(df['Client'].unique())
+        combolist = list(df['W.O. #'].unique())
         combolist = sorted([item for item in combolist if not(pd.isnull(item)) == True])
         self.ui.list_client.clear()
         self.ui.list_client.addItems(combolist)
@@ -292,16 +349,18 @@ class ControlMainWindow(QMainWindow, Master):
 
 # RESULTS DIALOG FUNCTIONS-------------------------------------------
     def get_results(self):
-        global reports, client, project, area, city
+        global reports, projnumber, project, area, city
 
-        client = self.ui.list_client.selectedItems()
+        projnumber = self.ui.list_projnumber.selectedItems()
         project = self.ui.list_project.selectedItems()
-        area = self.ui.list_area.selectedItems()
+        # area = self.ui.list_area.selectedItems()
         city = self.ui.list_city.selectedItems()
 
         # apply selected filters
-        results = df
-        search_dict = {'Client':client, 'Project Name':project, 'Area':area, 'CITY':city}
+        results = self.df
+        search_dict = {'W.O. #':projnumber, 'Project Name':project, 
+        # 'Area':area, 
+        'CITY':city}
         for k,v in search_dict.items():
             if v:
                 results = results[results[k]==v[0].text()]
@@ -319,7 +378,7 @@ class ControlMainWindow(QMainWindow, Master):
         self.close()
     
     def showResultsDialogSuccess(self):
-        global reports, resultsDialogSuccess, client, project, area, city
+        global reports, resultsDialogSuccess
         resultsDialogSuccess = ResultsDialogSuccess()
         resultsDialogSuccess.show()
         self.close()

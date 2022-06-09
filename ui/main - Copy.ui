@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1451</width>
+    <width>1509</width>
     <height>863</height>
    </rect>
   </property>
@@ -393,10 +393,10 @@ QPushButton:pressed {
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_30">
                  <property name="spacing">
-                  <number>10</number>
+                  <number>5</number>
                  </property>
                  <property name="leftMargin">
-                  <number>10</number>
+                  <number>0</number>
                  </property>
                  <property name="topMargin">
                   <number>0</number>
@@ -408,553 +408,302 @@ QPushButton:pressed {
                   <number>0</number>
                  </property>
                  <item>
+                  <widget class="QFrame" name="frame_home_main_2">
+                   <property name="minimumSize">
+                    <size>
+                     <width>400</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Plain</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_15">
+                    <property name="spacing">
+                     <number>5</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>5</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>5</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>5</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="lab_home_main_hed_2">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>55</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>55</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI Semilight</family>
+                        <pointsize>24</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLabel {
+	color:rgb(255,255,255);
+}</string>
+                      </property>
+                      <property name="text">
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Soils Report Search Tool&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
+                      <property name="textFormat">
+                       <enum>Qt::RichText</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_2">
+                      <property name="spacing">
+                       <number>6</number>
+                      </property>
+                      <item>
+                       <widget class="QLineEdit" name="line_searchclient">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color:rgb(255,255,255);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignLeft">
+                       <widget class="QPushButton" name="btn_searchclient">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="text">
+                         <string>Search for client...</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="list_client">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_3">
+                      <item>
+                       <widget class="QLineEdit" name="line_searchproject">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color:rgb(255,255,255);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignLeft">
+                       <widget class="QPushButton" name="btn_searchproject">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="text">
+                         <string>Search for project...</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="list_project">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_4">
+                      <item>
+                       <widget class="QLineEdit" name="line_searcharea">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color:rgb(255,255,255);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignLeft">
+                       <widget class="QPushButton" name="btn_searcharea">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="text">
+                         <string>Search for area...</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="list_area">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_5">
+                      <item>
+                       <widget class="QLineEdit" name="line_searchcity">
+                        <property name="maximumSize">
+                         <size>
+                          <width>200</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color:rgb(255,255,255);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignLeft">
+                       <widget class="QPushButton" name="btn_searchcity">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="text">
+                         <string>Search for city...</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="list_city">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_6">
+                      <item>
+                       <widget class="QPushButton" name="btn_search">
+                        <property name="styleSheet">
+                         <string notr="true">border-color: rgb(85, 255, 0);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(85, 255, 0);</string>
+                        </property>
+                        <property name="text">
+                         <string>Search PDFs</string>
+                        </property>
+                        <property name="autoDefault">
+                         <bool>true</bool>
+                        </property>
+                        <property name="default">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_reset">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 0, 0);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                        </property>
+                        <property name="text">
+                         <string>Reset Dropdowns</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QFrame" name="frame_5">
+                   <property name="minimumSize">
+                    <size>
+                     <width>750</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>300</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <widget class="QFrame" name="frame_9">
-                    <property name="geometry">
-                     <rect>
-                      <x>0</x>
-                      <y>0</y>
-                      <width>1361</width>
-                      <height>61</height>
-                     </rect>
+                   <layout class="QVBoxLayout" name="verticalLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
                     </property>
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                    <widget class="QLabel" name="lab_home_main_hed_2">
-                     <property name="geometry">
-                      <rect>
-                       <x>0</x>
-                       <y>0</y>
-                       <width>667</width>
-                       <height>55</height>
-                      </rect>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>55</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>16777215</width>
-                       <height>55</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI Semilight</family>
-                       <pointsize>24</pointsize>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-	color:rgb(255,255,255);
-}</string>
-                     </property>
-                     <property name="text">
-                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Soils Report Search Tool&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                     </property>
-                     <property name="textFormat">
-                      <enum>Qt::RichText</enum>
-                     </property>
-                    </widget>
-                   </widget>
-                   <widget class="QFrame" name="frame_10">
-                    <property name="geometry">
-                     <rect>
-                      <x>0</x>
-                      <y>60</y>
-                      <width>721</width>
-                      <height>761</height>
-                     </rect>
-                    </property>
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                    <widget class="QFrame" name="frame_12">
-                     <property name="geometry">
-                      <rect>
-                       <x>0</x>
-                       <y>30</y>
-                       <width>371</width>
-                       <height>331</height>
-                      </rect>
-                     </property>
-                     <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
-                     </property>
-                     <widget class="QWidget" name="horizontalLayoutWidget">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>0</y>
-                        <width>371</width>
-                        <height>31</height>
-                       </rect>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout">
-                       <item>
-                        <layout class="QHBoxLayout" name="horizontalLayout_24">
-                         <item>
-                          <widget class="QLineEdit" name="line_searchprojnumber">
-                           <property name="maximumSize">
-                            <size>
-                             <width>200</width>
-                             <height>16777215</height>
-                            </size>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">color:rgb(255,255,255);</string>
-                           </property>
-                           <property name="text">
-                            <string/>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QPushButton" name="btn_searchprojnumber">
-                           <property name="styleSheet">
-                            <string notr="true">color: rgb(255, 255, 255);</string>
-                           </property>
-                           <property name="text">
-                            <string>Search project number</string>
-                           </property>
-                          </widget>
-                         </item>
-                        </layout>
-                       </item>
-                      </layout>
-                     </widget>
-                     <widget class="QWidget" name="horizontalLayoutWidget_2">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>30</y>
-                        <width>371</width>
-                        <height>301</height>
-                       </rect>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_2">
-                       <item>
-                        <widget class="QListWidget" name="list_projnumber">
-                         <property name="styleSheet">
-                          <string notr="true">color:rgb(255,255,255);</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </widget>
-                    <widget class="QFrame" name="frame_13">
-                     <property name="geometry">
-                      <rect>
-                       <x>0</x>
-                       <y>709</y>
-                       <width>721</width>
-                       <height>51</height>
-                      </rect>
-                     </property>
-                     <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
-                     </property>
-                     <widget class="QWidget" name="horizontalLayoutWidget_19">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>10</y>
-                        <width>721</width>
-                        <height>41</height>
-                       </rect>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_25">
-                       <item>
-                        <widget class="QPushButton" name="btn_search">
-                         <property name="styleSheet">
-                          <string notr="true">border-color: rgb(85, 255, 0);
-font: 75 10pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(85, 255, 0);</string>
-                         </property>
-                         <property name="text">
-                          <string>Search PDFs</string>
-                         </property>
-                         <property name="autoDefault">
-                          <bool>true</bool>
-                         </property>
-                         <property name="default">
-                          <bool>true</bool>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="btn_reset">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 0, 0);
-font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
-                         </property>
-                         <property name="text">
-                          <string>Reset Dropdowns</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </widget>
-                    <widget class="QFrame" name="frame_14">
-                     <property name="geometry">
-                      <rect>
-                       <x>370</x>
-                       <y>30</y>
-                       <width>351</width>
-                       <height>331</height>
-                      </rect>
-                     </property>
-                     <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
-                     </property>
-                     <widget class="QWidget" name="horizontalLayoutWidget_3">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>0</y>
-                        <width>341</width>
-                        <height>31</height>
-                       </rect>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_3">
-                       <property name="leftMargin">
-                        <number>5</number>
-                       </property>
-                       <item>
-                        <widget class="QLineEdit" name="line_searchproject">
-                         <property name="maximumSize">
-                          <size>
-                           <width>200</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">color:rgb(255,255,255);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="btn_searchproject">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string>Search project name</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                     <widget class="QWidget" name="horizontalLayoutWidget_4">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>30</y>
-                        <width>351</width>
-                        <height>301</height>
-                       </rect>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_4">
-                       <property name="leftMargin">
-                        <number>5</number>
-                       </property>
-                       <item>
-                        <widget class="QListWidget" name="list_project">
-                         <property name="styleSheet">
-                          <string notr="true">color:rgb(255,255,255);</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </widget>
-                    <widget class="QFrame" name="frame_15">
-                     <property name="geometry">
-                      <rect>
-                       <x>0</x>
-                       <y>390</y>
-                       <width>371</width>
-                       <height>321</height>
-                      </rect>
-                     </property>
-                     <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
-                     </property>
-                     <widget class="QWidget" name="horizontalLayoutWidget_5">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>0</y>
-                        <width>371</width>
-                        <height>31</height>
-                       </rect>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_5">
-                       <item>
-                        <widget class="QLineEdit" name="line_searchcounty">
-                         <property name="maximumSize">
-                          <size>
-                           <width>200</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">color:rgb(255,255,255);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="btn_searchcounty">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string>Search for county (borough)...</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                     <widget class="QWidget" name="horizontalLayoutWidget_15">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>30</y>
-                        <width>371</width>
-                        <height>301</height>
-                       </rect>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_21">
-                       <item>
-                        <widget class="QListWidget" name="list_county">
-                         <property name="styleSheet">
-                          <string notr="true">color:rgb(255,255,255);</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </widget>
-                    <widget class="QFrame" name="frame_16">
-                     <property name="geometry">
-                      <rect>
-                       <x>370</x>
-                       <y>390</y>
-                       <width>351</width>
-                       <height>321</height>
-                      </rect>
-                     </property>
-                     <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
-                     </property>
-                     <widget class="QWidget" name="horizontalLayoutWidget_16">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>0</y>
-                        <width>341</width>
-                        <height>31</height>
-                       </rect>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_22">
-                       <property name="leftMargin">
-                        <number>5</number>
-                       </property>
-                       <item>
-                        <widget class="QLineEdit" name="line_searchcity">
-                         <property name="maximumSize">
-                          <size>
-                           <width>200</width>
-                           <height>16777215</height>
-                          </size>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">color:rgb(255,255,255);</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QPushButton" name="btn_searchcity">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string>Search for city...</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                     <widget class="QWidget" name="horizontalLayoutWidget_17">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>30</y>
-                        <width>351</width>
-                        <height>301</height>
-                       </rect>
-                      </property>
-                      <layout class="QHBoxLayout" name="horizontalLayout_23">
-                       <property name="leftMargin">
-                        <number>5</number>
-                       </property>
-                       <item>
-                        <widget class="QListWidget" name="list_city">
-                         <property name="styleSheet">
-                          <string notr="true">color:rgb(255,255,255);</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </widget>
-                    <widget class="QFrame" name="frame_17">
-                     <property name="geometry">
-                      <rect>
-                       <x>-1</x>
-                       <y>-1</y>
-                       <width>721</width>
-                       <height>31</height>
-                      </rect>
-                     </property>
-                     <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
-                     </property>
-                     <widget class="QLabel" name="label_4">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>0</y>
-                        <width>721</width>
-                        <height>31</height>
-                       </rect>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="text">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Search by project number or project name...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                      <property name="margin">
-                       <number>5</number>
-                      </property>
-                     </widget>
-                    </widget>
-                    <widget class="QFrame" name="frame_18">
-                     <property name="geometry">
-                      <rect>
-                       <x>0</x>
-                       <y>360</y>
-                       <width>721</width>
-                       <height>31</height>
-                      </rect>
-                     </property>
-                     <property name="frameShape">
-                      <enum>QFrame::StyledPanel</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Raised</enum>
-                     </property>
-                     <widget class="QLabel" name="label_7">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>0</y>
-                        <width>721</width>
-                        <height>31</height>
-                       </rect>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="text">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Search by location (select a county to drill-down cities)...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                      <property name="margin">
-                       <number>5</number>
-                      </property>
-                     </widget>
-                    </widget>
-                   </widget>
-                   <widget class="QFrame" name="frame_11">
-                    <property name="geometry">
-                     <rect>
-                      <x>719</x>
-                      <y>59</y>
-                      <width>641</width>
-                      <height>761</height>
-                     </rect>
-                    </property>
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                    <widget class="QWidget" name="verticalLayoutWidget">
-                     <property name="geometry">
-                      <rect>
-                       <x>-1</x>
-                       <y>-1</y>
-                       <width>641</width>
-                       <height>761</height>
-                      </rect>
-                     </property>
-                     <layout class="QVBoxLayout" name="verticalLayout">
-                      <property name="leftMargin">
-                       <number>10</number>
-                      </property>
-                      <property name="rightMargin">
-                       <number>10</number>
-                      </property>
-                     </layout>
-                    </widget>
-                   </widget>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_2"/>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                 </layout>
@@ -977,7 +726,7 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
                   <number>5</number>
                  </property>
                  <property name="bottomMargin">
-                  <number>0</number>
+                  <number>5</number>
                  </property>
                  <item>
                   <widget class="QLabel" name="lab_about_home_2">
@@ -1645,7 +1394,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1451</width>
+     <width>1509</width>
      <height>21</height>
     </rect>
    </property>
